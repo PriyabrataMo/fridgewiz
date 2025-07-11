@@ -48,14 +48,15 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const { id, email_addresses, first_name, last_name, image_url } = evt.data;
     const eventType = evt.type;
 
-    console.log(`Webhook with an ID of ${id} and type of ${eventType}`);
+    // console.log(`Webhook with an ID of ${id} and type of ${eventType}`);
     console.log("Webhook body:", body);
 
     switch (eventType) {
       case "user.created":
+        const { id, email_addresses, first_name, last_name, image_url } =
+          evt.data;
         try {
           await prisma.user.create({
             data: {
@@ -77,6 +78,8 @@ export async function POST(request: NextRequest) {
 
       case "user.updated":
         try {
+          const { id, email_addresses, first_name, last_name, image_url } =
+            evt.data;
           await prisma.user.upsert({
             where: { clerkId: id },
             update: {
@@ -106,6 +109,7 @@ export async function POST(request: NextRequest) {
 
       case "user.deleted":
         try {
+          const { id } = evt.data;
           await prisma.user.delete({
             where: { clerkId: id },
           });
