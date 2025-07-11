@@ -1,4 +1,6 @@
 import { Button } from "./ui/Button";
+import { AuthButton } from "./ui/AuthButton";
+import Link from "next/link";
 
 export default function Header() {
   return (
@@ -34,10 +36,10 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center space-x-4">
-            <Button variant="outline" size="sm">
-              Sign In
-            </Button>
-            <Button size="sm">Get Started</Button>
+            <AuthButton />
+            <Link href="/chat">
+              <Button size="sm">Get Started</Button>
+            </Link>
           </div>
         </div>
       </div>
