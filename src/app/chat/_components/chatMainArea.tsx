@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Message } from "../types";
+import { Message } from "./types";
 import MessageList from "./messageList";
 import MessageInput from "./messageInput";
 import { v4 as uuidv4 } from "uuid";
